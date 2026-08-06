@@ -39,4 +39,4 @@ The most important part of the case was the abuse of a Windows accessibility bin
 
 ## Why I built this
 
-I wanted a project that shows more than tool usage. The goal was to practice real investigation thinking, document the evidence clearly.
+I wanted a project that shows more than tool usage. The goal was to practice real investigation thinking, and document the evidence clearly.
