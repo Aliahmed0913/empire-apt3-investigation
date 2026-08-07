@@ -39,10 +39,3 @@
 * `ADMIN$`
 * `C$`
 * `IT`
-
-## Hashes
-
-> Add the hashes you validated during the investigation.
-
-* SHA256: `...`
-* MD5: `...`
