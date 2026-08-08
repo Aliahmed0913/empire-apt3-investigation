@@ -153,7 +153,7 @@ C:\$Recycle.Bin\old.7z
 The presence of archive creation, FTP command files, and staging inside `$Recycle.Bin` suggests the actor was preparing collected data for transfer or later retrieval.
 
 <img width="788" height="300" alt="collection" src="https://github.com/user-attachments/assets/8a6f294f-a558-4972-8922-ebae9f582c93" />
-<img width="1023" height="387" alt="payloadcollection" src="https://github.com/user-attachments/assets/ac2d5d9b-27da-496a-98e2-41510d3817c9" />
+<img width="1023" height="387" alt="payloadcollection" src="https://github.com/user-attachments/assets/a4dbb87d-63b3-4d78-a3e3-97b587b19ac7" />
 
 ## Key Findings
 
