@@ -28,7 +28,8 @@ The earliest suspicious action was the execution of `C:\Users\nmartha\Downloads\
 
 The PowerShell script also attempted to reduce visibility by bypassing AMSI, Disabling Script Block Logging, and bypassing certificate validation.
 
-<img width="1850" height="891" alt="empire-initial-execution" src="https://github.com/user-attachments/assets/2202b08e-d9db-47d8-b091-457ada4ba7e5" /> <img width="921" height="486" alt="empire-intial-decoded-execution" src="https://github.com/user-attachments/assets/806e8282-bf39-45d5-a8d0-6a00af308d10" />
+<img width="1850" height="891" alt="empire-initial-execution" src="https://github.com/user-attachments/assets/2202b08e-d9db-47d8-b091-457ada4ba7e5" /> <img width="453" height="129" alt="decode-ip" src="https://github.com/user-attachments/assets/a98a373d-374b-4627-8aa2-b9e9b7be2539" />
+<img width="921" height="486" alt="empire-intial-decoded-execution" src="https://github.com/user-attachments/assets/c7397493-bc55-4dc5-bf2d-cf2b73183d9e" />
 
 
 ### Phase 2 – Host and Domain Discovery
