@@ -28,9 +28,9 @@ The earliest suspicious action was the execution of `C:\Users\nmartha\Downloads\
 
 The PowerShell script also attempted to reduce visibility by bypassing AMSI, Disabling Script Block Logging, and bypassing certificate validation.
 
-<img width="1850" height="891" alt="empire-initial-execution" src="https://github.com/user-attachments/assets/2202b08e-d9db-47d8-b091-457ada4ba7e5" /> <img width="453" height="129" alt="decode-ip" src="https://github.com/user-attachments/assets/a98a373d-374b-4627-8aa2-b9e9b7be2539" />
+<img width="1850" height="891" alt="empire-initial-execution" src="https://github.com/user-attachments/assets/2202b08e-d9db-47d8-b091-457ada4ba7e5" /> 
 <img width="921" height="486" alt="empire-intial-decoded-execution" src="https://github.com/user-attachments/assets/c7397493-bc55-4dc5-bf2d-cf2b73183d9e" />
-
+<img width="453" height="129" alt="decode-ip" src="https://github.com/user-attachments/assets/a98a373d-374b-4627-8aa2-b9e9b7be2539" />
 
 ### Phase 2 – Host and Domain Discovery
 
@@ -47,6 +47,7 @@ The activity included:
 * clipboard contents,
 * listening ports,
 * and UAC configuration checks.
+  <img width="1850" height="892" alt="empire-discovery" src="https://github.com/user-attachments/assets/1cd37b5f-0d1a-4177-a8f4-a851b0ced179" />
 
 Several additional PowerShell payloads were downloaded and executed in memory during this phase, including:
 
@@ -57,6 +58,7 @@ Several additional PowerShell payloads were downloaded and executed in memory du
 ### Phase 3 – SMB Authentication and Lateral Movement
 
 PowerShell Module Logging showed multiple password candidates being processed before repeated SMB authentication attempts using `net use`.
+<img width="1855" height="894" alt="candidate-passwords" src="https://github.com/user-attachments/assets/42d3cefd-9893-4887-a20d-1aea6f1c453b" />
 
 The attacker attempted access against multiple hosts, including:
 
