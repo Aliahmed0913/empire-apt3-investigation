@@ -26,7 +26,11 @@ This timeline follows the attack by linking PowerShell, Sysmon, and Windows Secu
 
 The earliest suspicious action was the execution of `C:\Users\nmartha\Downloads\autoupdate.vbs`, which launched encoded PowerShell and pulled content from `10.0.10.106:8080/news.php` for in-memory execution.
 
-The PowerShell script also attempted to reduce visibility by bypassing AMSI, weakening Script Block Logging, and bypassing certificate validation.
+The PowerShell script also attempted to reduce visibility by bypassing AMSI, Disabling Script Block Logging, and bypassing certificate validation.
+
+<img width="1850" height="891" alt="empire-initial-execution" src="https://github.com/user-attachments/assets/2202b08e-d9db-47d8-b091-457ada4ba7e5" />
+<img width="921" height="486" alt="empire-intial-decoded-execution" src="https://github.com/user-attachments/assets/806e8282-bf39-45d5-a8d0-6a00af308d10" />
+
 
 ### Phase 2 – Host and Domain Discovery
 
