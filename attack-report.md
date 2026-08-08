@@ -73,12 +73,14 @@ On `HFDC01`, the available evidence shows access to administrative and custom SM
 * `IT`
 
 Security Event ID 5145 confirmed access requests against multiple files over SMB, including `recipe.txt` under `C:\IT`.
+<img width="1852" height="891" alt="smb-access-recipe" src="https://github.com/user-attachments/assets/0af0987a-c684-4d3c-9d72-881bd38f4d30" />
 
 Later events showed write access through the administrative share to:
 
 * `C:\Users\pgustavo\AppData\Roaming\Adobe\Flash Player\autoupdate.vbs`
 
 Sysmon Event ID 11 subsequently confirmed creation of that file on the target system.
+<img width="1852" height="891" alt="recipe-creation" src="https://github.com/user-attachments/assets/7bba4a88-3834-44b7-9101-6701922432ad" />
 
 ### Phase 4 – Remote Execution and Persistence
 
@@ -89,6 +91,7 @@ cmd.exe /c autoupdate.vbs
 ```
 
 Additional activity showed the creation of a Windows service named `AdobeUpdater` configured to execute the staged VBS script automatically.
+<img width="1850" height="897" alt="persistence" src="https://github.com/user-attachments/assets/3f7d3fc9-e424-446e-a29a-435404764e68" />
 
 This indicates the attacker established persistence while maintaining remote execution capability.
 
@@ -125,6 +128,7 @@ cmd.exe
   ↓
 whoami.exe
 ```
+<img width="1850" height="897" alt="process-tree" src="https://github.com/user-attachments/assets/8925b965-ed3a-45b7-a42a-cdab7431021e" />
 
 executed under `NT AUTHORITY\SYSTEM`.
 
@@ -144,8 +148,11 @@ The suspicious `recycler.exe` process archived `recipe.txt` into:
 ```text
 C:\$Recycle.Bin\old.7z
 ```
+<img width="1605" height="382" alt="compress" src="https://github.com/user-attachments/assets/a868224e-ba89-4743-8c90-bed1bbd7544d" />
 
 The presence of archive creation, FTP command files, and staging inside `$Recycle.Bin` suggests the actor was preparing collected data for transfer or later retrieval.
+<img width="788" height="300" alt="collection" src="https://github.com/user-attachments/assets/8a6f294f-a558-4972-8922-ebae9f582c93" />
+<img width="1023" height="387" alt="payloadcollection" src="https://github.com/user-attachments/assets/ac2d5d9b-27da-496a-98e2-41510d3817c9" />
 
 ## Key Findings
 
