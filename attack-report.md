@@ -8,12 +8,6 @@ The activity started with encoded PowerShell execution and moved through several
 
 I used PowerShell logging, Sysmon, Windows Security logs, hash analysis, and process correlation to build the timeline and validate the attack chain. The report focuses on the observed evidence, the attacker’s actions, and the techniques used at each stage.
 
-## Investigation Scope
-
-This investigation focused on reconstructing the attack path inside the Empire APT3 dataset and validating each stage using the available telemetry. The main objective was to understand what the actor did, how the activity progressed across hosts, and which logs best supported each conclusion.
-
-The analysis was based on PowerShell logging, Sysmon telemetry, Windows Security events, and hash validation where available. I used these sources to correlate execution, discovery, SMB share activity, file staging, and privilege escalation behavior across the timeline.
-
 The investigation centered on two hosts in particular: `HR001`, where the early PowerShell activity and SMB movement began, and `HFDC01`, where the later file share access and accessibility binary hijacking took place. I treated the dataset as a single attack chain, but I separated the findings by phase so the report would be easier to follow.
 
 Where the logs were incomplete or logging had been reduced by the actor, I relied on the strongest available evidence and kept the conclusions conservative.
@@ -154,61 +148,6 @@ The presence of archive creation, FTP command files, and staging inside `$Recycl
 
 <img width="788" height="300" alt="collection" src="https://github.com/user-attachments/assets/8a6f294f-a558-4972-8922-ebae9f582c93" />
 <img width="1023" height="387" alt="payloadcollection" src="https://github.com/user-attachments/assets/a4dbb87d-63b3-4d78-a3e3-97b587b19ac7" />
-
-## Key Findings
-
-### Finding 1 – Encoded PowerShell Used as the Initial Execution Method
-
-The attack started when `autoupdate.vbs` launched an encoded PowerShell process. The command downloaded `news.php` from `10.0.10.106:8080` and executed it directly in memory.
-
-The PowerShell script also attempted to bypass AMSI, disable Script Block Logging, and ignore certificate validation. These actions reduced the amount of telemetry available during the rest of the attack.
-
-### Finding 2 – The Actor Performed Broad Host and Domain Discovery
-
-After the payload executed, the attacker collected information about both the local host and the Active Directory environment.
-
-The activity included:
-
-* user and group enumeration,
-* Domain Admin enumeration,
-* local administrator enumeration,
-* running services,
-* network shares,
-* clipboard contents,
-* listening ports,
-* and UAC configuration.
-
-This indicates the actor was collecting enough information before moving to other systems.
-
-### Finding 3 – SMB Was Used for Remote Access and File Staging
-
-PowerShell Module Logging showed multiple password candidates before repeated SMB authentication attempts using `net use`.
-
-The logs show access to remote shares on `HFDC01`, including `ADMIN$`, `C$`, and `IT`.
-
-Later, Security Event ID 5145 and Sysmon Event ID 11 confirmed that `autoupdate.vbs` was written to the remote system.
-
-I also observed `recipe.txt` being accessed through the `IT` share before it was later archived into `old.7z`.
-
-### Finding 4 – Windows Accessibility Binary Was Hijacked
-
-One of the strongest findings in this investigation is the modification of `Magnify.exe`.
-
-The attacker first took ownership of the binary and changed its permissions using `takeown.exe` and `icacls.exe`.
-
-Later, Sysmon Event ID 11 showed PowerShell writing a file to the `Magnify.exe` path. Hash analysis identified the file as `cmd.exe`, while Sysmon reported the executable description as **Windows Command Processor**.
-
-When `Utilman.exe` launched `Magnify.exe`, the process spawned `cmd.exe` followed by `whoami.exe` under `NT AUTHORITY\SYSTEM`.
-
-Based on the available evidence, I assess with high confidence that the attacker replaced the original Magnifier executable to gain privileged command execution.
-
-### Finding 5 – Data Was Prepared Before Leaving the Host
-
-Toward the end of the attack, the actor created several files including `ftp.txt`, `recipe.txt`, and `old.7z`.
-
-The archive was created using `recycler.exe` inside `C:\$Recycle.Bin`.
-
-The dataset also shows FTP command files being dropped. Although the dataset does not fully confirm successful exfiltration, the available evidence suggests the actor was preparing files for transfer.
 
 ## MITRE ATT&CK Mapping
 
